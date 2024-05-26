@@ -180,7 +180,7 @@ retry:
     int32_t pos;
     int32_t maxwc = (RL_NUMSC - GET_SECT(RLDA)) * RL_NUMWD;
     int16_t wc = 0200000 - RLMP;
-    digitalWrite(B_LED, HIGH);
+    neopixelWrite(39, 0, 0, 10);
 
     if (RLTYPE == 0235)
         pos = GET_DA(RLDA) * 256 + RLUNIT * 10486272l;      // Size of RL02
@@ -220,6 +220,7 @@ retry:
         RLMP++;
         i++;                            // Count of words transferred
     }
+    neopixelWrite(39, 0, 0, 0);
     i &= 0377;
     val = 0;
     if (w && !RLMP) {                   // If write AND IO complete (RLMP==0) fill remaining words in sector with zeros.
@@ -239,7 +240,7 @@ retry:
     RLCS = (RLCS & ~060) | ((RLBA & 0600000) >> 12);
     rlready();
     drun = 0;
-    digitalWrite(B_LED, LOW);
+
 }
 
 void RL11::write16(uint32_t a, uint16_t v)
