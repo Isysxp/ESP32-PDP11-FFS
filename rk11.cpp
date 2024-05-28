@@ -60,7 +60,7 @@ void RK11::step() {
         // no GO bit
         return;
     }
-
+    rkcs &= ~0x2000; // Clear search complete - reset by rk11_seekEnd
     switch ((rkcs >> 1) & 7) {
     case 0:
         // controller reset
@@ -85,8 +85,9 @@ void RK11::step() {
             return;
         }
         seek();
-        rkcs &= ~0x2000; // Clear search complete - reset by rk11_seekEnd
+        rkcs |= 0x2000;  // Set search complete - reset by rk11_seekEnd
         rkcs |= 0x80;    // set done - ready to accept new command
+        rkready();
 	    if (rkcs & (1 << 6))
         	cpu.interrupt(INTRK, 5);
         break;
@@ -111,7 +112,7 @@ void RK11::readwrite() {
         return;
     }
     neopixelWrite(39, 10, 0, 0);
-    if (rkdelay++ < 60)          // Delay READ/WRITE by 50 cpu cycles. needed for DOS/BATCH
+    if (rkdelay++ < 1)          // Delay READ/WRITE by 50 cpu cycles. needed for DOS/BATCH
         return;
     rkdelay = 0;
 
