@@ -64,7 +64,7 @@ void loop0() {
            cpu.step();
         cpu.unibus.rk11.step();
         cpu.unibus.rl11.step();
-        if (kbdelay++ == 2000) {
+        if (kbdelay++ == 5000) {
             cpu.unibus.cons.poll();
             cpu.unibus.dl11.poll();
             kbdelay = 0;
