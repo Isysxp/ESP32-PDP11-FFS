@@ -62,8 +62,6 @@ void setup() {
 	char* bfr, rkfile[32], rlfile[32];
 	int bootdev = 0;
 
-	pinMode(38, OUTPUT);
-	digitalWrite(38, HIGH);
 	neopixelWrite(39, 0, 10, 0);
 
 	Serial.begin(115200);
