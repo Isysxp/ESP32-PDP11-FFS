@@ -16,4 +16,11 @@ The app provides 1 telnet stream linked to a DL11 serial port mapped at 2 Unibus
 (Do not try to use both at once!)<br>
 <br>
 Ian Schofield April 2024<br>
+<br>
+Note: With refernce to the flash partition table (Should be set to No OTA 1MB app 3MB flash).<br>
+Using ESP-IDF release >= 3.0 results in an app size > 1048576 bytes. This will overflow the app flash.<br>
+Please use ESP-IDF release 2.0.17 to correct this error.<br>
+<br>
+Ian Schofield August 2024<br>
+
 
