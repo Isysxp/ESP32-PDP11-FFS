@@ -1,4 +1,4 @@
-# ESP32_PDP11_FFS
+# ESP32_PDP11_FFS - A PDP11/40 with RK05 disk in flash.
 <br>
 This is a modified version of a PDP11/40 emulation at https://github.com/Isysxp/PDP11-on-the-M5-Core<br>
 This app requires an ESP32 processor with at least 512K of PSRAM.<br>
