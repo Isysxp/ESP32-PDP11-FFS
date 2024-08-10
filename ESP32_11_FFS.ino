@@ -1,9 +1,6 @@
 
 #include <FFat.h>
 #include <ESP32Time.h>
-#include <FS.h>
-#include <SD.h>
-#include <SPI.h>
 #include <ESP.h>
 #include <Arduino.h>
 #include <stdio.h>
@@ -20,7 +17,7 @@ int startup(char* rkfile, char* rlfile, int bootdev);
 using namespace std;
 char* ReadLine(bool fullDuplex = true, char lineBreak = '\n');
 
-string Fnames[128];
+String Fnames[128];
 int SelFile, cntr = 0;
 int lbright = 0;
 

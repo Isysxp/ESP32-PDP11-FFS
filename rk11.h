@@ -2,7 +2,6 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "FS.h"
-#include "SD.h"
 
 class RK11 {
 
