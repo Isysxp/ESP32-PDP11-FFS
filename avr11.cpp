@@ -20,7 +20,14 @@ ESP32Time SystemTime;
 int runFlag = 0, btcntr = 0;
 float btlvl;
 int RLTYPE;
+// Timer0 Configuration Pointer (Handle)
+hw_timer_t* Timer0_Cfg = NULL;
+portMUX_TYPE timerMux = portMUX_INITIALIZER_UNLOCKED;
 
+void ARDUINO_ISR_ATTR clkint()
+{
+    cpu.unibus.kw11.tick();
+}
 
 void setup( char *rkfile, char *rlfile, int bootdev)
  {
@@ -35,7 +42,11 @@ void setup( char *rkfile, char *rlfile, int bootdev)
   clkdiv = (uint64_t)1000000 / (uint64_t)60;
   systime = SystemTime.getMillis();
 	cpu.reset(02002,bootdev);
-  Serial.printf("Ready\n");  
+  Serial.printf("Ready\n");
+  Timer0_Cfg = timerBegin(0, 80, true);
+  timerAttachInterrupt(Timer0_Cfg, &clkint, true);
+  timerAlarmWrite(Timer0_Cfg, 20000, true);
+  timerAlarmEnable(Timer0_Cfg);
 }
 
 jmp_buf trapbuf;
@@ -68,11 +79,6 @@ void loop0() {
             cpu.unibus.cons.poll();
             cpu.unibus.dl11.poll();
             kbdelay = 0;
-            nowtime = SystemTime.getMillis();
-        }
-        if (nowtime-systime > 20) {
-            cpu.unibus.kw11.tick();
-            systime = nowtime;
         }
     }
 }
