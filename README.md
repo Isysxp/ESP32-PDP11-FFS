@@ -18,9 +18,13 @@ The app provides 1 telnet stream linked to a DL11 serial port mapped at 2 Unibus
 Ian Schofield April 2024<br>
 <br>
 Note: With refernce to the flash partition table (Should be set to No OTA 1MB app 3MB flash).<br>
-Using ESP-IDF release >= 3.0 results in an app size > 1048576 bytes. This will overflow the app flash.<br>
+Using ESP-IDF release >= 3.0 results in an app size > 1048576 bytes. This will overflow the ESP32 flash.<br>
 Please use ESP-IDF release 2.0.17 to correct this error.<br>
 <br>
+NB Change the SSID and Password in ESP_Telnet.cpp to match your router. <br>
+NNB If your ate uising the Arduino IDE, rename the root folder to ESP32_11_FFS for the app to load correctly. <br>
+
+
 Ian Schofield August 2024<br>
 
 
