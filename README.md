@@ -23,7 +23,7 @@ Please use ESP-IDF release 2.0.17 to correct this error.<br>
 <br>
 NB: Change the SSID and Password in ESP_Telnet.cpp to match your router. <br>
 NNB: If your are using the Arduino IDE, rename the root folder to ESP32_11_FFS for the app to load correctly. <br>
-
+<br>
 
 Ian Schofield August 2024<br>
 
