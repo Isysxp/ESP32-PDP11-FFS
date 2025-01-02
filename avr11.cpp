@@ -43,10 +43,12 @@ void setup( char *rkfile, char *rlfile, int bootdev)
   systime = SystemTime.getMillis();
 	cpu.reset(02002,bootdev);
   Serial.printf("Ready\n");
+
   Timer0_Cfg = timerBegin(0, 80, true);
   timerAttachInterrupt(Timer0_Cfg, &clkint, true);
   timerAlarmWrite(Timer0_Cfg, 20000, true);
   timerAlarmEnable(Timer0_Cfg);
+
 }
 
 jmp_buf trapbuf;
