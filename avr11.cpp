@@ -42,12 +42,11 @@ void setup( char *rkfile, char *rlfile, int bootdev)
   clkdiv = (uint64_t)1000000 / (uint64_t)60;
   systime = SystemTime.getMillis();
 	cpu.reset(02002,bootdev);
-  Serial.printf("Ready\n");
+  Serial.printf("Ready\r\n");
 
-  Timer0_Cfg = timerBegin(0, 80, true);
-  timerAttachInterrupt(Timer0_Cfg, &clkint, true);
-  timerAlarmWrite(Timer0_Cfg, 20000, true);
-  timerAlarmEnable(Timer0_Cfg);
+  Timer0_Cfg = timerBegin(1000000);
+  timerAttachInterrupt(Timer0_Cfg, &clkint);
+  timerAlarm(Timer0_Cfg, 20000, true, 0);
 
 }
 

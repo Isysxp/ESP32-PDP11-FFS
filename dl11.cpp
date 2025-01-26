@@ -31,7 +31,7 @@ void DL11::clearterminal() {
 static int _kbhit()
 {
 	if (telnet.isConnected()) {
-		lbright = 150;
+		lbright = 10;
 		return telnet.available();
 	}
 	return 0;
@@ -40,8 +40,8 @@ static int _kbhit()
 void DL11::serial_putchar(char c)
 {
 	telnet.write(c);
-	telnet.flush();
 }
+
 char DL11::serial_getchar()
 {
 	return (telnet.read());
@@ -49,8 +49,9 @@ char DL11::serial_getchar()
 
 void DL11::poll() {
 	telnet.loop();
-	if (++lbright > 100)
-		lbright = -100;
+	if (++lbright > 10)
+		lbright = -10;
+  // neopixelWrite(39, 0 , 0, abs(lbright));
 	// FastLED.setBrightness(abs(lbright));
 	// FastLED.show();
 	if (!rcvrdone()) {
