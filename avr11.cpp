@@ -87,7 +87,7 @@ void loop0() {
 int startup( char *rkfile, char *rlfile, int bootdev)
 {
     setup(rkfile,rlfile,bootdev);
-    neopixelWrite(39, 0, 0, 0);
+    rgbLedWrite(39,0,0,0);
     while (1)
         loop();
 }

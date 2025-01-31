@@ -59,7 +59,7 @@ void setup() {
 	char* bfr, rkfile[32], rlfile[32];
 	int bootdev = 0;
 
-	neopixelWrite(39, 0, 10, 0);
+	rgbLedWrite(39, 0, 10, 0);
 
 	Serial.begin(115200);
 	while (!Serial)
