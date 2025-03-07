@@ -44,10 +44,10 @@ void setup( char *rkfile, char *rlfile, int bootdev)
 	cpu.reset(02002,bootdev);
   Serial.printf("Ready\r\n");
 
-  Timer0_Cfg = timerBegin(1000000);
-  timerAttachInterrupt(Timer0_Cfg, &clkint);
-  timerAlarm(Timer0_Cfg, 20000, true, 0);
-
+  Timer0_Cfg = timerBegin(1, 80, true);
+  timerAttachInterrupt(Timer0_Cfg, &clkint,true);
+  timerAlarmWrite(Timer0_Cfg, 20000, true);
+  timerAlarmEnable(Timer0_Cfg);
 }
 
 jmp_buf trapbuf;
@@ -87,7 +87,7 @@ void loop0() {
 int startup( char *rkfile, char *rlfile, int bootdev)
 {
     setup(rkfile,rlfile,bootdev);
-    rgbLedWrite(39,0,0,0);
+    neopixelWrite(DATA_PIN,0,0,0);
     while (1)
         loop();
 }

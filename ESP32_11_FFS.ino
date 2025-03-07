@@ -9,7 +9,8 @@
 #include "ESPTelnetStream.h"
 
 #define NUM_LEDS 1
-#define DATA_PIN 2
+#define DATA_PIN 48
+//#define DATA_PIN 39
 
 extern void TStart();
 
@@ -59,7 +60,7 @@ void setup() {
 	char* bfr, rkfile[32], rlfile[32];
 	int bootdev = 0;
 
-	rgbLedWrite(39, 0, 10, 0);
+	neopixelWrite(DATA_PIN, 0, 10, 0);
 
 	Serial.begin(115200);
 	while (!Serial)
@@ -70,6 +71,7 @@ void setup() {
 
 	if (!FFat.begin()) {
 		Serial.println("FatFS Mount Failed");
+   neopixelWrite(DATA_PIN, 0, 0, 10);
 		while (1);
 	}
 
