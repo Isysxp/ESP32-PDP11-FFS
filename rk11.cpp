@@ -111,7 +111,7 @@ void RK11::readwrite() {
         }
         return;
     }
-    neopixelWrite(DATA_PIN, 10, 0, 0);
+    rgbLedWrite(DATA_PIN, 10, 0, 0);
     if (rkdelay++ < 60)          // Delay READ/WRITE by 50 cpu cycles. needed for DOS/BATCH
         return;
     rkdelay = 0;
@@ -164,7 +164,7 @@ void RK11::readwrite() {
     if (w)
         rk05.flush();
         // f_sync(&rk05);
-    neopixelWrite(DATA_PIN, 0, 0, 0);
+    rgbLedWrite(DATA_PIN, 0, 0, 0);
     sector++;
     if (sector > 013) {
         sector = 0;

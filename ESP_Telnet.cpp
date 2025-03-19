@@ -6,8 +6,8 @@
 /* ------------------------------------------------- */
 
 #define SERIAL_SPEED  115200
-#define INFRA_SSID    "<YOUR_SSID>"
-#define INFRA_PSWD    "<YOUR_PASSWORD"
+#define INFRA_SSID    "BT-Q6CTR8"
+#define INFRA_PSWD    "c531a3d358"
 //const char noecho[]={0xFF,0xFD,0x2D,0}; // IAC DO SUPPRESS-LOCAL-ECHO Required for Windows telnet client.
 const uint8_t noecho[]={0xFF,0xFB,0x01,0};   // IAC WILL ECHO Seems to work for most clients
 /*
@@ -49,21 +49,24 @@ void TStart() {
  uint8_t wifiAttempts = 0;
 
   Serial.println("ESP Telnet server");
-  WiFi.disconnect(true);
+  WiFi.disconnect(false,true);
   //Serial.flush();
   delay(2000);
+  WiFi.setAutoReconnect(false);
   WiFi.useStaticBuffers(true);
   WiFi.setHostname("EspPDP11");
   WiFi.mode(WIFI_STA);
+  WiFi.setMinSecurity(WIFI_AUTH_WPA2_PSK);
+  WiFi.setTxPower(WIFI_POWER_8_5dBm);
   WiFi.begin(INFRA_SSID, INFRA_PSWD);
 
-  while (WiFi.status() != WL_CONNECTED && wifiAttempts < 20)
+  while (WiFi.status() != WL_CONNECTED)
   {
     Serial.print(".");
     delay(1000);
-    if(wifiAttempts == 10)
+    if(wifiAttempts == 20)
     {
-      WiFi.disconnect(true, true);//Switch off the wifi on making 10 attempts and start again.
+      WiFi.disconnect();//Switch off the wifi on making 10 attempts and start again.
       WiFi.begin(INFRA_SSID, INFRA_PSWD);
       wifiAttempts = 0;
     }

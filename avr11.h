@@ -23,7 +23,7 @@ enum INTVEC {
 
 [[ noreturn ]] void trap(uint16_t num);
 
-#define DATA_PIN 48
+#define DATA_PIN RGB_BUILTIN
 
 #if defined (VMS)
 #include <ints.h>
@@ -98,7 +98,3 @@ typedef struct {
 
 #define STKL_R          0340                            /* stack limit */
 #define STKL_Y          0400
-
-
-
-
