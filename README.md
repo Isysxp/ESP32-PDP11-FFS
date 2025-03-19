@@ -28,5 +28,12 @@ NNB: If your are using the Arduino IDE, rename the root folder to ESP32_11_FFS f
 <br>
 
 Ian Schofield August 2024<br>
+<br>
+The Arduino/ESP-IDF libaray V3.1.3 for esp32 now allows for this app to be compiled and fit into the 1M of available flash.<br>
+Updating platform.txt as above is not longer required.<br>
+<br>
+Ian Schofield March 2025<br>
+<br>
+
 
 
